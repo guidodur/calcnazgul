@@ -9,7 +9,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: url('./assets/img/OIG.jpg') center fixed;
+            background: url('./assets/img/Sincastillo.jpg') center fixed;
             background-size: cover;
             display: flex;
             align-items: center;
@@ -62,8 +62,8 @@
         <label for="tj">Cantidad total de jugadores:</label>
         <input type="number" id="tj" placeholder="Enter Cantidad total de jugadores" required>
 
-        <label for="no">Cantidad inicial de Nazguls:</label>
-        <input type="number" id="no" placeholder="Enter Cantidad inicial de Nazguls" required>
+        <label for="no">Cantidad inicial de Nazgûls:</label>
+        <input type="number" id="no" placeholder="Enter Cantidad inicial de Nazgûls" required>
 
         <label for="card">Roaming Throne:</label>
         <select id="card">
@@ -91,9 +91,11 @@
             if (card) {
                 document.getElementById('result1').innerText = 'Primera tanda de Nazgûls: ' + (result.result2 || 'N/A') + ' contadores +1/+1';
                 document.getElementById('result2').innerText = 'Segunda tanda de Nazgûls: ' + result.result1 + ' contadores +1/+1';
+                document.body.style.backgroundImage = "url('./assets/img/Concastillo.jpg')";
             } else {
                 document.getElementById('result1').innerText = 'Primera tanda de Nazgûls: ' + result.result1 + ' contadores +1/+1';
                 document.getElementById('result2').innerText = 'Segunda tanda de Nazgûls: N/A';
+                document.body.style.backgroundImage = "url('./assets/img/Sincastillo.jpg')";
             }
         }
 
@@ -103,6 +105,7 @@
             document.getElementById('card').value = 'false';
             document.getElementById('result1').innerText = 'Primera tanda de Nazgûls:';
             document.getElementById('result2').innerText = 'Segunda tanda de Nazgûls:';
+            document.body.style.backgroundImage = "url('./assets/img/Sincastillo.jpg')";
         }
 
         function calculateResult(Tj, No, card) {
