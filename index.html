@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculation Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #calculator-section {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button.clear {
+            background-color: #f44336;
+        }
+
+        #results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="calculator-section">
+        <label for="tj">Cantidad total de jugadores:</label>
+        <input type="number" id="tj" placeholder="Enter Cantidad total de jugadores" required>
+
+        <label for="no">Cantidad inicial de Nazguls:</label>
+        <input type="number" id="no" placeholder="Enter Cantidad inicial de Nazgûls" required>
+
+        <label for="card">Roaming Throne:</label>
+        <select id="card">
+            <option value="false">False</option>
+            <option value="true">True</option>
+        </select>
+
+        <button onclick="calculate()">Calculate</button>
+        <button class="clear" onclick="clearFields()">Clear Fields</button>
+
+        <div id="results">
+            <p id="result1">Primera tanda de Nazgûls:</p>
+            <p id="result2">Segunda tanda de Nazgûls:</p>
+        </div>
+    </div>
+
+    <script>
+        function calculate() {
+            var tj = parseFloat(document.getElementById('tj').value);
+            var no = parseFloat(document.getElementById('no').value);
+            var card = document.getElementById('card').value === 'true';
+
+            var result = calculateResult(tj, no, card);
+
+            if (card) {
+                document.getElementById('result1').innerText = 'Primera tanda de Nazgûls: ' + (result.result2 || 'N/A');
+                document.getElementById('result2').innerText = 'Segunda tanda de Nazgûls: ' + result.result1;
+            } else {
+                document.getElementById('result1').innerText = 'Primera tanda de Nazgûls: ' + result.result1;
+                document.getElementById('result2').innerText = 'Segunda tanda de Nazgûls: N/A';
+            }
+        }
+
+        function clearFields() {
+            document.getElementById('tj').value = '';
+            document.getElementById('no').value = '';
+            document.getElementById('card').value = 'false';
+            document.getElementById('result1').innerText = 'Primera tanda de Nazgûls:';
+            document.getElementById('result2').innerText = 'Segunda tanda de Nazgûls:';
+        }
+
+        function calculateResult(Tj, No, card) {
+            if (Tj >= 2) {
+                var result1 = 4 * (Tj - 2) * (No + Tj - 2);
+                var result2;
+
+                if (card) {
+                    result2 = 4 * (Tj - 2) * (2 * No + 3 * Tj - 6);
+                }
+
+                return {
+                    result1: result1,
+                    result2: result2 || undefined
+                };
+            } else {
+                return {
+                    result1: 'Error: Cantidad total de jugadores must be greater than or equal to 2',
+                    result2: undefined
+                };
+            }
+        }
+    </script>
+
+</body>
+</html>
