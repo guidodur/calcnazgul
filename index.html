@@ -7,12 +7,22 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
+            background: url('./assets/img/OIG.jpg') center fixed;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
 
         #calculator-section {
             max-width: 400px;
-            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8); /* Background color for calculator section */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
 
         label {
@@ -20,14 +30,9 @@
             margin-bottom: 5px;
         }
 
-        input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-        }
-
-        select {
+        input,
+        select,
+        button {
             width: 100%;
             padding: 8px;
             margin-bottom: 10px;
@@ -58,7 +63,7 @@
         <input type="number" id="tj" placeholder="Enter Cantidad total de jugadores" required>
 
         <label for="no">Cantidad inicial de Nazguls:</label>
-        <input type="number" id="no" placeholder="Enter Cantidad inicial de Nazgûls" required>
+        <input type="number" id="no" placeholder="Enter Cantidad inicial de Nazguls" required>
 
         <label for="card">Roaming Throne:</label>
         <select id="card">
@@ -84,10 +89,10 @@
             var result = calculateResult(tj, no, card);
 
             if (card) {
-                document.getElementById('result1').innerText = 'Primera tanda de Nazgûls: ' + (result.result2 || 'N/A');
-                document.getElementById('result2').innerText = 'Segunda tanda de Nazgûls: ' + result.result1;
+                document.getElementById('result1').innerText = 'Primera tanda de Nazgûls: ' + (result.result2 || 'N/A') + ' contadores +1/+1';
+                document.getElementById('result2').innerText = 'Segunda tanda de Nazgûls: ' + result.result1 + ' contadores +1/+1';
             } else {
-                document.getElementById('result1').innerText = 'Primera tanda de Nazgûls: ' + result.result1;
+                document.getElementById('result1').innerText = 'Primera tanda de Nazgûls: ' + result.result1 + ' contadores +1/+1';
                 document.getElementById('result2').innerText = 'Segunda tanda de Nazgûls: N/A';
             }
         }
